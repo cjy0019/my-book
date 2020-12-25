@@ -1,6 +1,13 @@
-import React from 'react';
 import Signin from '../components/Signin';
+import withToken from '../hocs/withToken';
+import { Redirect } from 'react-router-dom';
 
-export default function SinginPage() {
+function SinginPage(props) {
+  const { token } = props;
+
+  if (token !== null) {
+    return <Redirect to='/' />;
+  }
   return <Signin />;
 }
+export default withToken(SinginPage);
